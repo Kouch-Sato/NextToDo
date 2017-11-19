@@ -1,2 +1,4 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
+<h1>This is Task-index page.</h1>
+<table class="table">
+  <%= render :partial => "tasks/task", :collection => @tasks %>
+</table>
