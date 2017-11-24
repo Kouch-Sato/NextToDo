@@ -6,7 +6,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.label = 1
+    @task.label = "blue"
     if @task.save
       redirect_to tasks_path
     else 
@@ -23,6 +23,13 @@ class TasksController < ApplicationController
     @task.update(task_params)
     redirect_to tasks_path
   end
+
+  def destroy
+    @task = Task.find_by(id: params[:id])
+    @task.destroy
+    redirect_to tasks_path
+  end
+
 
   private 
   def task_params

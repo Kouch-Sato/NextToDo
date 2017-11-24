@@ -4,12 +4,14 @@
     <% @tasks.each do |task| %>
       <tr>
       <td>
+        <span class="label-color-box" style="background:<%= task.label %>;">
+        </span>
         <%= link_to(edit_task_path(task)) do %>
           <div class="task-title">
             <%= task.title %>
           </div>
           <div class="task-due_date">
-            <%= task.label %>
+            s
           </div>
         <% end %>
       </td>
