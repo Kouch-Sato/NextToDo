@@ -9,14 +9,13 @@
             <%= task.title %>
           </div>
           <div class="task-due_date">
-            <%= task.due_date %>
+            <%= task.label %>
           </div>
         <% end %>
       </td>
       </tr>
     <% end %>
   </table>
-
 
   <div class="task-new-form">
     <%= form_for (@task) do |f| %>

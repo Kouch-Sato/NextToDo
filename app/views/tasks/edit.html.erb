@@ -21,14 +21,15 @@
       <div class="form-body">
         <%= f.label :label, "ラベルをつけましょう。" %><br>
         <%= f.radio_button :label, 1 %>
-        <%= f.label :label_1, 1 %>
+        <%= f.label :label_1, "red", :class => "label label-red" %>
         <%= f.radio_button :label, 2 %>
-        <%= f.label :label_2, 2 %>
+        <%= f.label :label_2, "yellow", :class => "label label-yellow" %>
         <%= f.radio_button :label, 3 %>
-        <%= f.label :label_3, 3 %>
+        <%= f.label :label_3, "green", :class => "label label-green" %>
         <%= f.radio_button :label, 4 %>
-        <%= f.label :label_4, 4 %>
+        <%= f.label :label_4, "blue", :class => "label label-blue" %>
       </div>
+      <br>
       <div class="form-body">
         <%= f.submit "投稿", :class => "btn btn-success" %>
       </div>
