@@ -1,0 +1,14 @@
+<h1>This is Task-new page.</h1>
+<%= form_for (@task) do |f| %>
+  <div class="form">
+    <div class="form-body">
+      <%= f.text_field :title, :class => "form-control"  %>
+    </div>
+    <div class="form-body">  
+      <%= f.text_area :body, :class => "form-control" %>
+    </div>
+    <div class="form-body">
+      <%= f.submit "投稿", :class => "btn btn-success" %>
+    </div>
+  </div>
+<% end %>
