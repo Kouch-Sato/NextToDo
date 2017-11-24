@@ -1,5 +1,34 @@
-<h1>This is Task-index page.</h1>
-<table class="table">
-  <%= render :partial => "tasks/task", :collection => @tasks %>
-</table>
-<a href="/tasks/new">タスクを新規作成する</a>
+<div class="container">
+  <h1>This is Task-index page.</h1>
+  <table class="table">
+    <% @tasks.each do |task| %>
+      <tr>
+      <td>
+        <%= link_to(edit_task_path(task)) do %>
+          <div class="task-title">
+            <%= task.title %>
+          </div>
+          <div class="task-due_date">
+            <%= task.due_date %>
+          </div>
+        <% end %>
+      </td>
+      </tr>
+    <% end %>
+  </table>
+
+
+  <div class="task-new-form">
+    <%= form_for (@task) do |f| %>
+    <div class="form">
+      <div class="form-body">
+        <%= f.text_field :title, :class => "form-control"  %>
+      </div>
+      <div class="form-body">
+        <%= f.submit "投稿", :class => "btn btn-success" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

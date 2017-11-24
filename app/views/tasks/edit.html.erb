@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>タスクを編集してください</h1>
+  <div class="container">
+    <%= form_for (@task) do |f| %>
+    <div class="form">
+      <div class="form-body">
+        <%= f.text_field :title, :class => "form-control"  %>
+      </div>
+      <div class="form-body">
+        <%= f.label :body, "詳細を書くことができます。" %>
+        <%= f.text_area :body, :class => "form-control"  %>
+      </div>
+      <div class="form-body">
+        <%= f.label :due_date, "締め切りは？" %><br>
+        <%= f.date_select :due_date, :class => "form-control"  %>
+      </div>
+      <div class="form-body">
+        <%= f.label :status, "ステータスを変更できます。" %><br>
+        <%= f.select :status, [["未着手", 1], ["実行中", 2], ["完了済み", 3]], :class => "form-control"  %>
+      </div>
+      <div class="form-body">
+        <%= f.label :label, "ラベルをつけましょう。" %><br>
+        <%= f.radio_button :label, 1 %>
+        <%= f.label :label_1, 1 %>
+        <%= f.radio_button :label, 2 %>
+        <%= f.label :label_2, 2 %>
+        <%= f.radio_button :label, 3 %>
+        <%= f.label :label_3, 3 %>
+        <%= f.radio_button :label, 4 %>
+        <%= f.label :label_4, 4 %>
+      </div>
+      <div class="form-body">
+        <%= f.submit "投稿", :class => "btn btn-success" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>  
