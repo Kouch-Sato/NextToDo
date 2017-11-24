@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks1 = Task.all.where(status: 1)
+    @tasks2 = Task.all.where(status: 2)
+    @tasks3 = Task.all.where(status: 3)
     @task = Task.new
   end
 

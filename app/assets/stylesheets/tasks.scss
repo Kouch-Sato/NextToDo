@@ -44,3 +44,10 @@ input[type="radio"]:checked + label {
     width: 20px;
     float: left;
 }
+
+.tasks-count {
+    display: block;
+    background: gray;
+    color: white;
+    width: 30px;
+}
