@@ -22,6 +22,19 @@
                 <%= task.due_date %>
               </div>
             <% end %>
+
+            <!-- 実行中へのボタン --> 
+            <%= form_for(task) do |f| %>
+              <div class="form">
+                <div class="form-body">
+                  <%= f.hidden_field :status, value: "doing" %>
+                </div>
+                <div class="form-body">
+                  <%= f.submit "実行中へ", :class => "btn btn-success" %>  
+                </div>
+              </div>
+            <% end %>
+
           </td>
           </tr>
         <% end %>
@@ -43,6 +56,19 @@
                 <%= task.due_date %>
               </div>
             <% end %>
+
+            <!-- 実行中へのボタン --> 
+            <%= form_for(task) do |f| %>
+              <div class="form　upgrade-button">
+                <div class="form-body">
+                  <%= f.hidden_field :status, value: "done" %>
+                </div>
+                <div class="form-body">
+                  <%= f.submit "完了済みへ", :class => "btn btn-success" %>  
+                </div>
+              </div>
+            <% end %>
+
           </td>
           </tr>
         <% end %>
