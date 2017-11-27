@@ -1,15 +1,15 @@
 class TasksController < ApplicationController
   def index
-    @tasks1 = Task.all.where(status: 1)
-    @tasks2 = Task.all.where(status: 2)
-    @tasks3 = Task.all.where(status: 3)
+    @yet_tasks = Task.all.where(status: "yet")
+    @doing_tasks = Task.all.where(status: "doing")
+    @done_tasks = Task.all.where(status: "done")
     @task = Task.new
   end
 
   def create
     @task = Task.new(task_params)
     @task.label = "blue"
-    @task.status = 1
+    @task.status = "yet"
     if @task.save
       redirect_to tasks_path
     else 

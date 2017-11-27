@@ -15,7 +15,7 @@
       </div>
       <div class="form-body">
         <%= f.label :status, "ステータスを変更できます。" %><br>
-        <%= f.select :status, [["未着手", 1], ["実行中", 2], ["完了済み", 3]], :class => "form-control"  %>
+        <%= f.select :status, [["未着手", "yet"], ["実行中", "doing"], ["完了済み", "done"]], :class => "form-control"  %>
       </div>
       <div class="form-body">
         <%= f.label :label, "ラベルをつけましょう。" %><br>

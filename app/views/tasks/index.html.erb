@@ -1,15 +1,15 @@
 <div class="container">
   <h1>This is Task-index page.</h1>
   <ul class="nav nav-tabs">
-    <li><a href="#table1" data-toggle="tab">未着手<span class-"tasks-count"><%= @tasks1.count %></span></a></li>
-    <li class="active"><a href="#table2" data-toggle="tab">実行中<span class-"tasks-count"><%= @tasks2.count %></span></a></li>
-    <li><a href="#table3" data-toggle="tab">完了済み<span class-"tasks-count"><%= @tasks3.count %></span></a></li>
+    <li><a href="#table1" data-toggle="tab">未着手<span class-"tasks-count"><%= @yet_tasks.count %></span></a></li>
+    <li class="active"><a href="#table2" data-toggle="tab">実行中<span class-"tasks-count"><%= @doing_tasks.count %></span></a></li>
+    <li><a href="#table3" data-toggle="tab">完了済み<span class-"tasks-count"><%= @done_tasks.count %></span></a></li>
   </ul>
 
   <div class="tab-content">
     <div class="tab-pane" id="table1">
       <table class="table">
-        <% @tasks1.each do |task| %>
+        <% @yet_tasks.each do |task| %>
           <tr>
           <td>
             <span class="label-color-box" style="background:<%= task.label %>;">
@@ -30,7 +30,7 @@
 
     <div class="tab-pane active" id="table2">
       <table class="table">
-        <% @tasks2.each do |task| %>
+        <% @doing_tasks.each do |task| %>
           <tr>
           <td>
             <span class="label-color-box" style="background:<%= task.label %>;">
@@ -51,7 +51,7 @@
 
     <div class="tab-pane" id="table3">
       <table class="table">
-        <% @tasks3.each do |task| %>
+        <% @done_tasks.each do |task| %>
           <tr>
           <td>
             <span class="label-color-box" style="background:<%= task.label %>;">
