@@ -1,9 +1,15 @@
 class TasksController < ApplicationController
   def index
-    @yet_tasks = Task.all.where(status: "yet")
-    @doing_tasks = Task.all.where(status: "doing")
-    @done_tasks = Task.all.where(status: "done")
+    @yet_tasks = Task.all.yet
+    @doing_tasks = Task.all.doing
+    @done_tasks = Task.all.done
+    if params[:label].present?
+      @yet_tasks = Task.all.yet.get_by_label(params[:label])
+      @doing_tasks = Task.all.doing.get_by_label(params[:label])
+      @done_tasks = Task.all.done.get_by_label(params[:label])
+    end
     @task = Task.new
+    @label = params[:label]
   end
 
   def create

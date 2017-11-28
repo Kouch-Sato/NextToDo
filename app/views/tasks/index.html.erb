@@ -1,5 +1,14 @@
 <div class="container">
   <h1>This is Task-index page.</h1>
+
+  <!-- ソートフォーム -->
+  <div class="search-form">
+    <%= form_tag(tasks_path, method: "get") do %>
+      <%= select_tag :label, options_for_select(Task.labels) %>
+      <%= submit_tag "検索" %>
+    <% end %>
+  </div>
+
   <ul class="nav nav-tabs">
     <li><a href="#table1" data-toggle="tab">未着手<span class-"tasks-count"><%= @yet_tasks.size %></span></a></li>
     <li class="active"><a href="#table2" data-toggle="tab">実行中<span class-"tasks-count"><%= @doing_tasks.size %></span></a></li>
@@ -97,6 +106,7 @@
     </div>  
   </div>
 
+  <!-- 新規登録フォーム　-->
   <div class="task-new-form">
     <%= form_for (@task) do |f| %>
     <div class="form">
@@ -106,8 +116,8 @@
       <div class="form-body">
         <%= f.submit "投稿", :class => "btn btn-success" %>
       </div>
-      <% end %>
     </div>
+    <% end %>
   </div>
 
 </div>
