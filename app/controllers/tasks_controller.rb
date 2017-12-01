@@ -1,4 +1,4 @@
-class TasksController < ApplicationController
+class TasksController < UsersController
   def index
     @yet_tasks = Task.all.yet
     @doing_tasks = Task.all.doing
@@ -23,17 +23,17 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find_by(id: params[:id])
+    @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find_by(id: params[:id])
+    @task = Task.find(params[:id])
     @task.update(task_params)
     redirect_to tasks_path
   end
 
   def destroy
-    @task = Task.find_by(id: params[:id])
+    @task = Task.find(params[:id])
     @task.destroy
     redirect_to tasks_path
   end
