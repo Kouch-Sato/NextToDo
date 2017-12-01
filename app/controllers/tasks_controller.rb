@@ -1,14 +1,14 @@
-class TasksController < UsersController
+class TasksController < ApplicationController
   before_action :forbid_not_login_user
 
   def index
-    @yet_tasks = Task.all.yet
-    @doing_tasks = Task.all.doing
-    @done_tasks = Task.all.done
+    @yet_tasks = @current_user.tasks.all.yet
+    @doing_tasks = @current_user.tasks.all.doing
+    @done_tasks = @current_user.tasks.all.done
     if params[:label].present?
-      @yet_tasks = Task.all.yet.get_by_label(params[:label])
-      @doing_tasks = Task.all.doing.get_by_label(params[:label])
-      @done_tasks = Task.all.done.get_by_label(params[:label])
+      @yet_tasks = @current_user.tasks.all.yet.get_by_label(params[:label])
+      @doing_tasks = @current_user.tasks.all.doing.get_by_label(params[:label])
+      @done_tasks = @current_user.tasks.all.done.get_by_label(params[:label])
     end
     @task = Task.new
     @label = params[:label]
@@ -17,6 +17,7 @@ class TasksController < UsersController
   def create
     @task = Task.new(task_params)
     @task.status = "yet"
+    @task.user_id = @current_user.id
     if @task.save
       redirect_to tasks_path
     else 
@@ -40,7 +41,7 @@ class TasksController < UsersController
     redirect_to tasks_path
   end
 
-  private 
+  private
   def task_params
     params.require(:task).permit(:title, :body, :status, :due_date, :label)
   end
