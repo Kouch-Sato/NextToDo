@@ -1,4 +1,6 @@
 class TasksController < UsersController
+  before_action :forbid_not_login_user
+
   def index
     @yet_tasks = Task.all.yet
     @doing_tasks = Task.all.doing
@@ -37,7 +39,6 @@ class TasksController < UsersController
     @task.destroy
     redirect_to tasks_path
   end
-
 
   private 
   def task_params

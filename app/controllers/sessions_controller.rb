@@ -16,4 +16,5 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to tasks_path
   end
+  
 end

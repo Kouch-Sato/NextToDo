@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :forbid_not_login_user, only: [:update]
+  before_action :forbid_login_user, only: [:new, :create]
 
   def index
     @users = User.all
@@ -34,6 +36,7 @@ class UsersController < ApplicationController
     end
   end
 
+  private
   def user_params
     params.require(:user).permit(:name, :email, :password, :image)
   end
