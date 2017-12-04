@@ -4,4 +4,5 @@ class User < ApplicationRecord
     validates :password, { presence: true }
 
     has_many :tasks, dependent: :delete_all
+    mount_uploader :image, ImageUploader
 end
