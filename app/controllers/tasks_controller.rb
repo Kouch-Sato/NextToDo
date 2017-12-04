@@ -2,13 +2,14 @@ class TasksController < ApplicationController
   before_action :forbid_not_login_user
 
   def index
-    @yet_tasks = @current_user.tasks.all.yet
-    @doing_tasks = @current_user.tasks.all.doing
-    @done_tasks = @current_user.tasks.all.done
     if params[:label].present?
-      @yet_tasks = @current_user.tasks.all.yet.get_by_label(params[:label])
-      @doing_tasks = @current_user.tasks.all.doing.get_by_label(params[:label])
-      @done_tasks = @current_user.tasks.all.done.get_by_label(params[:label])
+      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label])
+      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label])
+      @done_tasks = @current_user.tasks.done.get_by_label(params[:label])
+    else
+      @yet_tasks = @current_user.tasks.yet
+      @doing_tasks = @current_user.tasks.doing
+      @done_tasks = @current_user.tasks.done
     end
     @task = Task.new
     @label = params[:label]
