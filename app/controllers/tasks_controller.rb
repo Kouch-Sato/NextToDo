@@ -16,13 +16,24 @@ class TasksController < ApplicationController
   end
 
   def create
+    /renderのときのためのindexの変数達/
+    if params[:label].present?
+      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label])
+      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label])
+      @done_tasks = @current_user.tasks.done.get_by_label(params[:label])
+    else
+      @yet_tasks = @current_user.tasks.yet
+      @doing_tasks = @current_user.tasks.doing
+      @done_tasks = @current_user.tasks.done
+    end
+
     @task = Task.new(task_params)
     @task.status = "yet"
     @task.user_id = @current_user.id
     if @task.save
       redirect_to tasks_path, notice: "新しいタスクを作成しました" 
     else 
-      redirect_to tasks_path
+      render :index
     end
   end
 

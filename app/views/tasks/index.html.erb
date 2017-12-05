@@ -78,7 +78,7 @@
                 </div>
               </div>
             <% end %>
-
+            
           </td>
           </tr>
         <% end %>
@@ -109,6 +109,7 @@
 
   <!-- 新規登録フォーム -->
   <div class="task-new-form">
+    <%= render partial: "partials/error_message", locals: { thing: @task } %>
     <%= form_for (@task) do |f| %>
     <div class="form">
       <div class="form-body">

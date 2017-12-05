@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to tasks_path, notice: "ログインしました！"
     else
-      render "/home/top"
+      redirect_to home_top_path, alert: "メールアドレスかパスワードが違います"
     end
   end
 
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to tasks_path, notice: "ログアウトしました"
+    redirect_to home_top_path, notice: "ログアウトしました"
   end
   
 end
