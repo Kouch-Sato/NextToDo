@@ -20,7 +20,7 @@ class TasksController < ApplicationController
     @task.status = "yet"
     @task.user_id = @current_user.id
     if @task.save
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: "新しいタスクを作成しました" 
     else 
       redirect_to tasks_path
     end
@@ -32,14 +32,17 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    @task.update(task_params)
-    redirect_to tasks_path
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: "タスクを編集しました"
+    else 
+      render :edit
+    end    
   end
 
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to tasks_path
+    redirect_to tasks_path, "タスクを削除しました"
   end
 
   private
