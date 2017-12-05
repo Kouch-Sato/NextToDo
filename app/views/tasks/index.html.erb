@@ -11,9 +11,9 @@
   </div>
 
   <ul class="nav nav-tabs">
-    <li><a href="#table1" data-toggle="tab">未着手<span class-"tasks-count"><%= @yet_tasks.size %></span></a></li>
-    <li class="active"><a href="#table2" data-toggle="tab">実行中<span class-"tasks-count"><%= @doing_tasks.size %></span></a></li>
-    <li><a href="#table3" data-toggle="tab">完了済み<span class-"tasks-count"><%= @done_tasks.size %></span></a></li>
+    <li><a href="#table1" data-toggle="tab">未着手<span class="badge"><%= @yet_tasks.size %></span></a></li>
+    <li class="active"><a href="#table2" data-toggle="tab">実行中<span class="badge"><%= @doing_tasks.size %></span></a></li>
+    <li><a href="#table3" data-toggle="tab">完了済み<span class="badge"><%= @done_tasks.size %></span></a></li>
   </ul>
 
   <div class="tab-content">
@@ -78,7 +78,7 @@
                 </div>
               </div>
             <% end %>
-            
+
           </td>
           </tr>
         <% end %>
