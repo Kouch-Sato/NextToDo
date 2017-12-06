@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
-  post "login" => "sessions#create"
-  post "logout" => "sessions#destroy"
-  get "login" => "sessions#new"
-
-  get 'users/index'
+  post "login" => "users#login"
+  post "logout" => "users#logout"
+  get "login" => "users#login_form"
 
   get 'home/top'
 

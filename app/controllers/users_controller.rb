@@ -36,6 +36,26 @@ class UsersController < ApplicationController
     end
   end
 
+  #session周り
+
+  def login
+    @user = User.find_by(email: params[:email], password: params[:password])
+    if @user
+      session[:user_id] = @user.id
+      redirect_to tasks_path, notice: "ログインしました！"
+    else
+      redirect_to home_top_path, alert: "メールアドレスかパスワードが違います"
+    end
+  end
+
+  def login_form
+  end
+
+  def logout
+    reset_session
+    redirect_to home_top_path, notice: "ログアウトしました"
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :image)
