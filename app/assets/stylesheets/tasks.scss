@@ -1,0 +1,57 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+input[type=radio] {
+    display: none;
+}
+
+.label {
+    display: block;
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    color: black;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+.label-red {
+    background :red; 
+}
+
+.label-yellow {
+    background :yellow; 
+}
+
+.label-green {
+    background :green; 
+}
+
+.label-blue {
+    background :blue; 
+}
+
+input[type="radio"]:checked + label {
+    border: 3px solid black;
+}
+
+.label-color-box {
+    display: block;
+    height: 20px;
+    width: 20px;
+    float: left;
+}
+
+.tasks-count {
+    display: block;
+    background: gray;
+    color: white;
+    width: 30px;
+}
+
+.btn-success {
+    float: right;
+}
