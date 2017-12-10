@@ -2,7 +2,7 @@
   <h1>タスクを編集してください</h1>
     <%= render partial: "partials/error_message", locals: { thing: @task } %>
     <%= @task.created_at %>
-    <%= form_for (@task) do |f| %>
+    <%=  [:user, @task] do |f| %>
     <div class="form">
       <div class="form-body">
         <%= f.text_field :title, :class => "form-control"  %>
@@ -36,6 +36,6 @@
       </div>
       <% end %>
     </div>
-    <%= link_to "タスクを削除", task_path(@task), method: :delete %>
+    <%= link_to "タスクを削除", user_task_path(@task), method: :delete %>
 </div>
 

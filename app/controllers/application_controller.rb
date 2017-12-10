@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def forbid_login_user
     if @current_user.present?
-      redirect_to tasks_path, alert:"既にログインしています"
+      redirect_to user_tasks_path, alert:"既にログインしています"
     end
   end
 end

@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to tasks_path
+      redirect_to user_tasks_path
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:email], password: params[:password])
     if @user
       session[:user_id] = @user.id
-      redirect_to tasks_path, notice: "ログインしました！"
+      redirect_to user_tasks_path, notice: "ログインしました！"
     else
       redirect_to home_top_path, alert: "メールアドレスかパスワードが違います"
     end

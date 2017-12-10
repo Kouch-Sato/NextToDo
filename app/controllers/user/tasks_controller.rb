@@ -1,4 +1,4 @@
-class TasksController < ApplicationController
+class User::TasksController < ApplicationController
   before_action :forbid_not_login_user
 
   def index
@@ -31,7 +31,7 @@ class TasksController < ApplicationController
     @task.status = "yet"
     @task.user_id = @current_user.id
     if @task.save
-      redirect_to tasks_path, notice: "新しいタスクを作成しました" 
+      redirect_to user_tasks_path, notice: "新しいタスクを作成しました" 
     else 
       render :index
     end
@@ -44,7 +44,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to tasks_path, notice: "タスクを編集しました"
+      redirect_to user_tasks_path, notice: "タスクを編集しました"
     else 
       render :edit
     end    
@@ -53,7 +53,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to tasks_path, "タスクを削除しました"
+    redirect_to user_tasks_path, "タスクを削除しました"
   end
 
   private

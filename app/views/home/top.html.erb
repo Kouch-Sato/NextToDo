@@ -2,7 +2,7 @@
   <div class="home-top-wrapper">
     <h1 class="home-heading">Next To Do</h1>
     <p>This is landing Page.</p>
-    <a href="/tasks">メインページへ</a>
-    <a href="/users/new">新規登録</a>
+    <%= link_to("main page", user_tasks_path) %>
+    <%= link_to("新規登録", new_user_path) %>
   </div>
 </div>
