@@ -2,6 +2,7 @@ class Admin::UsersController < ApplicationController
   layout "admin_layout"
 
   before_action :forbid_not_login_user
+  before_action :forbid_not_admin_user
 
   def index
     @users = User.all
@@ -39,11 +40,13 @@ class Admin::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :image)
+    params.require(:user).permit(:name, :email, :password, :image, :role)
   end
 
   def forbid_not_admin_user
+    if @current_user.role != "admin"
+      redirect_to user_tasks_path, alert:"あなたは管理ユーザーではありません"
+    end
   end
 
-  
 end

@@ -3,6 +3,8 @@ class User < ApplicationRecord
     validates :email, { presence: true, uniqueness: true }
     validates :password, { presence: true }
 
+    enum role: [:not_admin, :admin]
+    
     has_many :tasks, dependent: :delete_all
     mount_uploader :image, ImageUploader
 end
