@@ -44,7 +44,7 @@ class Admin::UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_tasks_path, notice: "ログインしました！"
     else
-      redirect_to home_top_path, alert: "メールアドレスかパスワードが違います"
+      redirect_to login_path, alert: "メールアドレスかパスワードが違います"
     end
   end
 
@@ -53,7 +53,7 @@ class Admin::UsersController < ApplicationController
 
   def logout
     reset_session
-    redirect_to home_top_path, notice: "ログアウトしました"
+    redirect_to login_path, notice: "ログアウトしました"
   end
 
   private
