@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  layout "admin_layout"
+
   before_action :forbid_not_login_user
 
   def index
