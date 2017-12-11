@@ -1,15 +1,18 @@
 <div class="container">
   <h1>This is admin home.</h1>
+  <h2>ユーザー一覧</h2>
   <table class="table table-bordered">
     <% @users.each do |user| %>
       <tr>
         <td>
+          <%= image_tag user.image.url, class: "current_user-image" %>
           <%= link_to(user.name, edit_admin_user_path(user)) %>
         </td>
       </tr>
     <% end %>
   </table>
-
+  <h2>新しいユーザーを作ることができます。</h2>
+  <h4>※パスワードは本人に変更させてください。</h4>
   <div class="container">
     <%= render partial: "partials/error_message", locals: { thing: @user } %>
     <%= form_for [:admin, @user] do |f| %>
