@@ -1,6 +1,10 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_action :forbid_not_login_user, only: [:update]
   before_action :forbid_login_user, only: [:new, :create]
+
+  def index
+    @users = User.all
+  end
 
   def new
     @user = User.new
@@ -14,6 +18,9 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
   end
 
   def edit

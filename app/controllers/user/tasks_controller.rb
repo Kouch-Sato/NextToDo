@@ -53,7 +53,7 @@ class User::TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to user_tasks_path, "タスクを削除しました"
+    redirect_to user_tasks_path, notice: "タスクを削除しました"
   end
 
   private
