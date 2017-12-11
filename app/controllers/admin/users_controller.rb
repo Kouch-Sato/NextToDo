@@ -1,21 +1,18 @@
 class Admin::UsersController < ApplicationController
-  before_action :forbid_not_login_user, only: [:update]
-  before_action :forbid_login_user, only: [:new, :create]
+  before_action :forbid_not_login_user
 
   def index
     @users = User.all
-  end
-
-  def new
     @user = User.new
   end
 
   def create
+    @users = User.all
     @user = User.new(user_params)
     if @user.save
       redirect_to admin_users_path, notice: "アカウントを作成しました"
     else
-      render :new
+      render :index
     end
   end
 
