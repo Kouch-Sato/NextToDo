@@ -56,6 +56,12 @@ class User::TasksController < ApplicationController
     redirect_to user_tasks_path, notice: "タスクを削除しました"
   end
 
+  def calendar
+  end
+
+  def graph
+  end
+
   private
   def task_params
     params.require(:task).permit(:title, :body, :status, :due_date, :label)

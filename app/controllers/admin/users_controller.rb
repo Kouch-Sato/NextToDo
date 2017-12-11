@@ -13,8 +13,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to users_path, notice: "アカウントを作成しました"
+      redirect_to admin_users_path, notice: "アカウントを作成しました"
     else
       render :new
     end
@@ -30,30 +29,10 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_tasks_path
+      redirect_to admin_users_path, notice: "アカウントを編集しました"
     else
       render :edit
     end
-  end
-
-  #session周り
-
-  def login
-    @user = User.find_by(email: params[:email], password: params[:password])
-    if @user
-      session[:user_id] = @user.id
-      redirect_to user_tasks_path, notice: "ログインしました！"
-    else
-      redirect_to login_path, alert: "メールアドレスかパスワードが違います"
-    end
-  end
-
-  def login_form
-  end
-
-  def logout
-    reset_session
-    redirect_to login_path, notice: "ログアウトしました"
   end
 
   private

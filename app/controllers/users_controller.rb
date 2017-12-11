@@ -1,20 +1,6 @@
 class UsersController < ApplicationController
-  before_action :forbid_not_login_user, only: [:update]
-  before_action :forbid_login_user, only: [:new, :create]
-
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to users_path, notice: "アカウントを作成しました"
-    else
-      render :new
-    end
-  end
+  before_action :forbid_not_login_user, only: [:edit, :update, :logout]
+  before_action :forbid_login_user, only: [:login, :login_form]
 
   def edit
     @user = User.find(params[:id])

@@ -10,22 +10,19 @@
     <nav class="navbar navbar-default">
       <ul class="nav navbar-nav">
         <% if @current_user %>
-          <li><%= link_to("ホーム", login_path) %></li>
-          <li><%= link_to(@current_user.name, edit_user_path(@current_user)) %></li>
-        <% else %>
-          <li><%= link_to("新規登録", new_user_path) %></li>
-        <% end %>  
+          <li><%= link_to("Next To Do", user_tasks_path) %></li>
+          <li><%= link_to("カレンダー", user_tasks_calendar_path) %></li>
+          <li><%= link_to("グラフ", user_tasks_graph_path) %></li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if @current_user %>
+          <li><%= link_to(@current_user.name, edit_user_path(@current_user)) %></li>
           <li><%= link_to("ログアウト", "/logout", method: :post) %></li>
-        <% else %>
-          <li><%= link_to("ログイン", "/login") %></li>
         <% end %>  
       </ul>
     </nav>
   </header>
-
 
   <body>
     <% if flash[:notice].present? %>
