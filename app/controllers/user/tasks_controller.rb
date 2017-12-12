@@ -1,15 +1,16 @@
 class User::TasksController < ApplicationController
   before_action :forbid_not_login_user
+  PER = 5
 
   def index
     if params[:label].present?
-      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label])
-      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label])
-      @done_tasks = @current_user.tasks.done.get_by_label(params[:label])
+      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:page]).per(PER)
+      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:page]).per(PER)
+      @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:page]).per(PER)
     else
-      @yet_tasks = @current_user.tasks.yet
-      @doing_tasks = @current_user.tasks.doing
-      @done_tasks = @current_user.tasks.done
+      @yet_tasks = @current_user.tasks.yet.page(params[:page]).per(PER)
+      @doing_tasks = @current_user.tasks.doing.page(params[:page]).per(PER)
+      @done_tasks = @current_user.tasks.done.page(params[:page]).per(PER)
     end
     @task = Task.new
     @label = params[:label]
@@ -18,13 +19,13 @@ class User::TasksController < ApplicationController
   def create
     /renderのときのためのindexの変数達/
     if params[:label].present?
-      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label])
-      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label])
-      @done_tasks = @current_user.tasks.done.get_by_label(params[:label])
+      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:page]).per(PER)
+      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:page]).per(PER)
+      @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:page]).per(PER)
     else
-      @yet_tasks = @current_user.tasks.yet
-      @doing_tasks = @current_user.tasks.doing
-      @done_tasks = @current_user.tasks.done
+      @yet_tasks = @current_user.tasks.yet.page(params[:page]).per(PER)
+      @doing_tasks = @current_user.tasks.doing.page(params[:page]).per(PER)
+      @done_tasks = @current_user.tasks.done.page(params[:page]).per(PER)
     end
 
     @task = Task.new(task_params)

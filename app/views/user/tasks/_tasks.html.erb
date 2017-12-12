@@ -1,0 +1,47 @@
+<table class="table">
+  <% tasks.each do |task| %>
+    <tr>
+    <td>
+      <span class="label-color-box" style="background:<%= task.label %>;">
+      </span>
+      <%= link_to(edit_user_task_path(task)) do %>
+        <div class="task-title">
+          <%= task.title %>
+        </div>
+        <div class="task-due_date">
+          <%= task.due_date %>
+        </div>
+      <% end %>
+
+      <% if task.status == "yet" %>
+        <!-- 実行中へのボタン --> 
+        <%= form_for [:user, task] do |f| %>
+          <div class="form">
+            <div class="form-body">
+              <%= f.hidden_field :status, value: "doing" %>
+            </div>
+            <div class="form-body">
+              <%= f.submit "実行中へ", :class => "btn btn-success" %>  
+            </div>
+          </div>
+        <% end %>
+      <% elsif task.status == "doing" %>
+        <!-- 完了済みのボタン --> 
+        <%= form_for [:user, task] do |f| %>
+          <div class="form upgrade-button">
+            <div class="form-body">
+              <%= f.hidden_field :status, value: "done" %>
+            </div>
+            <div class="form-body">
+              <%= f.submit "完了済みへ", :class => "btn btn-success" %>  
+            </div>
+          </div>
+        <% end %>
+      <% end %>  
+  
+
+    </td>
+    </tr>
+  <% end %>
+</table>
+<%= paginate tasks, :remote => true %>

@@ -2,111 +2,6 @@
   <h1>This is Task-index page.</h1>
   <%= image_tag @current_user.image.url, class: "current_user-image" %>
 
-  <!-- ソートフォーム -->
-  <div class="search-form">
-    <%= form_tag(user_tasks_path, method: "get") do %>
-      <%= select_tag :label, options_for_select(Task.labels) %>
-      <%= submit_tag "検索" %>
-    <% end %>
-  </div>
-
-  <ul class="nav nav-tabs">
-    <li><a href="#table1" data-toggle="tab">未着手<span class="badge"><%= @yet_tasks.size %></span></a></li>
-    <li class="active"><a href="#table2" data-toggle="tab">実行中<span class="badge"><%= @doing_tasks.size %></span></a></li>
-    <li><a href="#table3" data-toggle="tab">完了済み<span class="badge"><%= @done_tasks.size %></span></a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div class="tab-pane" id="table1">
-      <table class="table">
-        <% @yet_tasks.each do |task| %>
-          <tr>
-          <td>
-            <span class="label-color-box" style="background:<%= task.label %>;">
-            </span>
-            <%= link_to(edit_user_task_path(task)) do %>
-              <div class="task-title">
-                <%= task.title %>
-              </div>
-              <div class="task-due_date">
-                <%= task.due_date %>
-              </div>
-            <% end %>
-
-            <!-- 実行中へのボタン --> 
-            <%= form_for [:user, task] do |f| %>
-              <div class="form">
-                <div class="form-body">
-                  <%= f.hidden_field :status, value: "doing" %>
-                </div>
-                <div class="form-body">
-                  <%= f.submit "実行中へ", :class => "btn btn-success" %>  
-                </div>
-              </div>
-            <% end %>
-
-          </td>
-          </tr>
-        <% end %>
-      </table>
-    </div>  
-
-    <div class="tab-pane active" id="table2">
-      <table class="table">
-        <% @doing_tasks.each do |task| %>
-          <tr>
-          <td>
-            <span class="label-color-box" style="background:<%= task.label %>;">
-            </span>
-            <%= link_to(edit_user_task_path(task)) do %>
-              <div class="task-title">
-                <%= task.title %>
-              </div>
-              <div class="task-due_date">
-                <%= task.due_date %>
-              </div>
-            <% end %>
-
-            <!-- 実行中へのボタン --> 
-            <%= form_for [:user, task] do |f| %>
-              <div class="form upgrade-button">
-                <div class="form-body">
-                  <%= f.hidden_field :status, value: "done" %>
-                </div>
-                <div class="form-body">
-                  <%= f.submit "完了済みへ", :class => "btn btn-success" %>  
-                </div>
-              </div>
-            <% end %>
-
-          </td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-
-    <div class="tab-pane" id="table3">
-      <table class="table">
-        <% @done_tasks.each do |task| %>
-          <tr>
-          <td>
-            <span class="label-color-box" style="background:<%= task.label %>;">
-            </span>
-            <%= link_to(edit_user_task_path(task)) do %>
-              <div class="task-title">
-                <%= task.title %>
-              </div>
-              <div class="task-due_date">
-                <%= task.due_date %>
-              </div>
-            <% end %>
-          </td>
-          </tr>
-        <% end %>
-      </table>
-    </div>  
-  </div>
-
   <!-- 新規登録フォーム -->
   <div class="task-new-form">
     <%= render partial: "partials/error_message", locals: { thing: @task } %>
@@ -120,6 +15,34 @@
       </div>
     </div>
     <% end %>
+  </div>
+
+  <!-- ソートフォーム -->
+  <div class="search-form">
+    <%= form_tag(user_tasks_path, method: "get") do %>
+      <%= select_tag :label, options_for_select(Task.labels) %>
+      <%= submit_tag "検索" %>
+    <% end %>
+  </div>
+
+  <ul class="nav nav-tabs">
+    <li><a href="#table1" data-toggle="tab">未着手<span class="badge"><%= @yet_tasks.total_count %></span></a></li>
+    <li class="active"><a href="#table2" data-toggle="tab">実行中<span class="badge"><%= @doing_tasks.total_count %></span></a></li>
+    <li><a href="#table3" data-toggle="tab">完了済み<span class="badge"><%= @done_tasks.total_count %></span></a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane" id="table1">
+      <%= render :partial => 'tasks', locals: { tasks: @yet_tasks } %>
+    </div>  
+  
+    <div class="tab-pane active" id="table2">
+      <%= render :partial => 'tasks', locals: { tasks: @doing_tasks } %>
+    </div>
+
+    <div class="tab-pane" id="table3">
+      <%= render :partial => 'tasks', locals: { tasks: @done_tasks } %>
+    </div>  
   </div>
 
 </div>

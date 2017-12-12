@@ -1,0 +1,3 @@
+$("#table1").html("<%= j(render :partial => 'tasks', locals: { tasks: @yet_tasks }) %>")
+$("#table2").html("<%= j(render :partial => 'tasks', locals: { tasks: @doing_tasks }) %>")
+$("#table3").html("<%= j(render :partial => 'tasks', locals: { tasks: @done_tasks }) %>")
