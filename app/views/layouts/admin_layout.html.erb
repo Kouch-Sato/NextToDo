@@ -7,12 +7,12 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
-        <li><%= link_to("Next To Do", admin_users_path) %></li>
+        <li><%= link_to("Next To Do -Admin-", admin_users_path) %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to("Admin Mode", user_tasks_path) %></li>
+        <li><%= link_to("User Modeへ", user_tasks_path) %></li>
         <li><%= link_to(@current_user.name) %></li>
         <li><%= link_to("ログアウト", "/logout", method: :post) %></li>
       </ul>

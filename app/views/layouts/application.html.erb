@@ -18,7 +18,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if @current_user %>
           <% if @current_user.role == "admin" %>
-            <li><%= link_to("User Mode", admin_users_path) %></li>
+            <li><%= link_to("Admin Modeへ", admin_users_path) %></li>
           <% end %>  
           <li><%= link_to(@current_user.name, edit_user_path(@current_user)) %></li>
           <li><%= link_to("ログアウト", "/logout", method: :post) %></li>
