@@ -70,15 +70,15 @@ class User::TasksController < ApplicationController
   def tasks
     @tasks = Task.all
     @tasks.each do |task|
-      task.start = "2017-12-12"
       task.start = task.due_date
     end
+    
     respond_to do |format|
       format.json {
         render json:
-        @tasks.to_json(
-          only: [:title, :start]
-        )
+          @tasks.to_json(
+            only: [:title, :start]
+          )
       }
     end
   end
