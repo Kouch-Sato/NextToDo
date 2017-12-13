@@ -4,22 +4,22 @@
     <%= @task.created_at %>
     <%= form_for [:user, @task] do |f| %>
     <div class="form">
-      <div class="form-body">
+      <div class="form-group">
         <%= f.text_field :title, :class => "form-control"  %>
       </div>
-      <div class="form-body">
+      <div class="form-group">
         <%= f.label :body, "詳細を書くことができます。" %>
         <%= f.text_area :body, :class => "form-control"  %>
       </div>
-      <div class="form-body">
+      <div class="form-group">
         <%= f.label :due_date, "締め切りは？" %><br>
         <%= f.date_select :due_date, :class => "form-control"  %>
       </div>
-      <div class="form-body">
+      <div class="form-group">
         <%= f.label :status, "ステータスを変更できます。" %><br>
         <%= f.select :status, [["未着手", "yet"], ["実行中", "doing"], ["完了済み", "done"]], :class => "form-control"  %>
       </div>
-      <div class="form-body">
+      <div class="form-group">
         <p>ラベルをつけましょう。</p>
         <%= f.radio_button :label, "red", :class => "hidden" %>
         <%= f.label :label_red, "red", :class => "label label-red" %>
@@ -37,7 +37,7 @@
         <%= f.label :share_yes, "共有する" %>
         <%= f.radio_button :share, "yes" %>
       </div>  
-      <div class="form-body">
+      <div class="form-group">
         <%= f.submit "更新", :class => "btn btn-success" %>
       </div>
       <% end %>

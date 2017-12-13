@@ -7,21 +7,20 @@
     <%= render partial: "partials/error_message", locals: { thing: @task } %>
     <%= form_for [:user, @task] do |f| %>
     <div class="form">
-      <div class="form-body">
-        <%= f.text_field :title, :class => "form-control float-left"  %>
-      </div>
-      <div class="form-body">
+      <div class="form-inline">
+        <%= f.text_field :title, :class => "form-control", style: "width: 500px;" %>
         <%= f.submit "投稿", :class => "btn btn-success" %>
       </div>
     </div>
     <% end %>
   </div>
+  <br>
 
   <!-- ソートフォーム -->
   <div class="search-form">
     <%= form_tag(user_tasks_path, method: "get") do %>
       <%= select_tag :label, options_for_select(Task.labels) %>
-      <%= submit_tag "検索" %>
+      <%= submit_tag "検索", :class => "btn btn-success" %>
     <% end %>
   </div>
 

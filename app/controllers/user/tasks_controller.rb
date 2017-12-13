@@ -17,7 +17,6 @@ class User::TasksController < ApplicationController
       @alert_tasks = @current_user.tasks.alert.page(params[:alert_tasks_page]).per(PER)
     end
     @task = Task.new
-    @label = params[:label]
   end
 
   def create

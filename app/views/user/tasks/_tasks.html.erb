@@ -17,10 +17,10 @@
         <!-- 実行中へのボタン --> 
         <%= form_for [:user, task] do |f| %>
           <div class="form">
-            <div class="form-body">
+            <div class="form-group">
               <%= f.hidden_field :status, value: "doing" %>
             </div>
-            <div class="form-body">
+            <div class="form-group">
               <%= f.submit "実行中へ", :class => "btn btn-success" %>  
             </div>
           </div>
@@ -29,10 +29,10 @@
         <!-- 完了済みのボタン --> 
         <%= form_for [:user, task] do |f| %>
           <div class="form upgrade-button">
-            <div class="form-body">
+            <div class="form-group">
               <%= f.hidden_field :status, value: "done" %>
             </div>
-            <div class="form-body">
+            <div class="form-group">
               <%= f.submit "完了済みへ", :class => "btn btn-success" %>  
             </div>
           </div>
