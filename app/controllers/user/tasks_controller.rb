@@ -4,13 +4,13 @@ class User::TasksController < ApplicationController
 
   def index
     if params[:label].present?
-      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:page]).per(PER)
-      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:page]).per(PER)
-      @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:page]).per(PER)
+      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:yet_page]).per(PER)
+      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:doing_page]).per(PER)
+      @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:done_page]).per(PER)
     else
-      @yet_tasks = @current_user.tasks.yet.page(params[:page]).per(PER)
-      @doing_tasks = @current_user.tasks.doing.page(params[:page]).per(PER)
-      @done_tasks = @current_user.tasks.done.page(params[:page]).per(PER)
+      @yet_tasks = @current_user.tasks.yet.page(params[:yet_page]).per(PER)
+      @doing_tasks = @current_user.tasks.doing.page(params[:doing_page]).per(PER)
+      @done_tasks = @current_user.tasks.done.page(params[:done_page]).per(PER)
     end
     @task = Task.new
     @label = params[:label]

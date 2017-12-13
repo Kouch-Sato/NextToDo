@@ -6,11 +6,11 @@
   <div class="task-new-form">
     <%= render partial: "partials/error_message", locals: { thing: @task } %>
     <%= form_for [:user, @task] do |f| %>
-    <div class="form">
-      <div class="form-body">
-        <%= f.text_field :title, :class => "form-control float-left"  %>
+    <div class="form-inline">
+      <div class="form-group">
+        <%= f.text_field :title, :class => "form-control w-50" ,style: "width:500px;"  %>
       </div>
-      <div class="form-body">
+      <div class="form-group">
         <%= f.submit "投稿", :class => "btn btn-success" %>
       </div>
     </div>
@@ -29,31 +29,31 @@
     <div class="table-wrapper">
       <p class="table-title">未着手のタスク</p>
       <div id="table1">
-        <%= render :partial => 'tasks', locals: { tasks: @yet_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @yet_tasks, param_name: 'yet_page' } %>
       </div>
     </div>    
     <div class="table-wrapper">
       <p class="table-title">実行中のタスク</p>
       <div id="table2">
-        <%= render :partial => 'tasks', locals: { tasks: @doing_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @doing_tasks, param_name: 'doing_page'  } %>
       </div>
     </div>  
     <div class="table-wrapper">
       <p class="table-title">完了したタスク</p>
       <div id="table3">
-        <%= render :partial => 'tasks', locals: { tasks: @done_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @done_tasks, param_name: 'done_page'  } %>
       </div>  
     </div>
     <div class="table-wrapper">
       <p class="table-title">共有タスク</p>
       <div id="table4">
-        <%= render :partial => 'tasks', locals: { tasks: @share_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @share_tasks, param_name: 'yet_page'  } %>
       </div> 
     </div>
     <div class="table-wrapper"> 
       <p class="table-title">終了期限が近いタスク</p> 
       <div id="table5">
-        <%= render :partial => 'tasks', locals: { tasks: @alert_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @alert_tasks, param_name: 'yet_page'  } %>
       </div>
     </div>
   </div>  
