@@ -30,7 +30,13 @@
         <%= f.radio_button :label, "blue", :class => "hidden" %>
         <%= f.label :label_blue, "blue", :class => "label label-blue" %>
       </div>
-      <br>
+      <br><br><br><br><br>
+      <div class="form-group">
+        <%= f.label :share_no, "共有しない" %>
+        <%= f.radio_button :share, "no" %>
+        <%= f.label :share_yes, "共有する" %>
+        <%= f.radio_button :share, "yes" %>
+      </div>  
       <div class="form-body">
         <%= f.submit "更新", :class => "btn btn-success" %>
       </div>

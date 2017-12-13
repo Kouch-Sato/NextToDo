@@ -14,6 +14,7 @@ class User::TasksController < ApplicationController
     end
     @task = Task.new
     @label = params[:label]
+    @share_tasks = Task.share.page(params[:page]).per(PER)
   end
 
   def create
@@ -65,6 +66,6 @@ class User::TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :body, :status, :due_date, :label)
+    params.require(:task).permit(:title, :body, :status, :due_date, :label, :share)
   end
 end

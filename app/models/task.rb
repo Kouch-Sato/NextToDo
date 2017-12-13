@@ -7,10 +7,12 @@ class Task < ApplicationRecord
 
     enum status: [:yet, :doing, :done]
     enum label: [:red, :yellow, :green, :blue]
+    enum share: [:no, :yes]
 
     scope :yet, -> { where(status: "yet") }
     scope :doing, -> { where(status: "doing") }
     scope :done, -> { where(status: "done") }
+    scope :share, -> { where(share: "yes") }
 
     scope :get_by_label, -> (label) {
         where(label: label)
