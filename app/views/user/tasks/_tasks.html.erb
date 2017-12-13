@@ -21,7 +21,7 @@
               <%= f.hidden_field :status, value: "doing" %>
             </div>
             <div class="form-group">
-              <%= f.submit "実行中へ", :class => "btn btn-success" %>  
+              <%= f.submit "実行中へ", :class => "btn btn-info" %>  
             </div>
           </div>
         <% end %>
@@ -33,14 +33,18 @@
               <%= f.hidden_field :status, value: "done" %>
             </div>
             <div class="form-group">
-              <%= f.submit "完了済みへ", :class => "btn btn-success" %>  
+              <%= f.submit "完了済みへ", :class => "btn btn-primary" %>  
             </div>
           </div>
         <% end %>
+      <% elsif task.status == "done" %>
+        <div class="form-group">
+          <%= link_to "削除する", user_task_path(task), method: :delete, :class => "btn btn-danger" %>
+        </div>  
       <% end %>  
   
     </td>
     </tr>
   <% end %>
 </table>
-<%= paginate tasks, param_name: param_name %>
+<%= paginate tasks, param_name: param_name, :class => "pagenation-bar" %>

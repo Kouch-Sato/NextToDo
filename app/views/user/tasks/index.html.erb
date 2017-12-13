@@ -1,5 +1,4 @@
 <div class="container">
-  <h1>This is Task-index page.</h1>
   <%= image_tag @current_user.image.url, class: "current_user-image" %>
 
   <!-- 新規登録フォーム -->
@@ -8,7 +7,7 @@
     <%= form_for [:user, @task] do |f| %>
     <div class="form">
       <div class="form-inline">
-        <%= f.text_field :title, :class => "form-control", style: "width: 500px;" %>
+        <%= f.text_field :title, :class => "form-control", style: "width: 800px;" %>
         <%= f.submit "投稿", :class => "btn btn-success" %>
       </div>
     </div>
