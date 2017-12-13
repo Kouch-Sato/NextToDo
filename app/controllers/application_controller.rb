@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
 
   def forbid_not_login_user
     if @current_user.blank?
-      redirect_to home_top_path, alert: "ログインしてください"
+      redirect_to login_path, alert: "ログインしてください"
     end
   end
 
   def forbid_login_user
     if @current_user.present?
-      redirect_to tasks_path, alert:"既にログインしています"
+      redirect_to user_tasks_path, alert:"既にログインしています"
     end
   end
 end

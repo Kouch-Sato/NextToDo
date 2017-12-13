@@ -4,16 +4,16 @@
 
   <!-- ソートフォーム -->
   <div class="search-form">
-    <%= form_tag(tasks_path, method: "get") do %>
+    <%= form_tag(user_tasks_path, method: "get") do %>
       <%= select_tag :label, options_for_select(Task.labels) %>
       <%= submit_tag "検索" %>
     <% end %>
   </div>
 
   <ul class="nav nav-tabs">
-    <li><a href="#table1" data-toggle="tab">未着手<span class-"tasks-count"><%= @yet_tasks.size %></span></a></li>
-    <li class="active"><a href="#table2" data-toggle="tab">実行中<span class-"tasks-count"><%= @doing_tasks.size %></span></a></li>
-    <li><a href="#table3" data-toggle="tab">完了済み<span class-"tasks-count"><%= @done_tasks.size %></span></a></li>
+    <li><a href="#table1" data-toggle="tab">未着手<span class="badge"><%= @yet_tasks.size %></span></a></li>
+    <li class="active"><a href="#table2" data-toggle="tab">実行中<span class="badge"><%= @doing_tasks.size %></span></a></li>
+    <li><a href="#table3" data-toggle="tab">完了済み<span class="badge"><%= @done_tasks.size %></span></a></li>
   </ul>
 
   <div class="tab-content">
@@ -24,7 +24,7 @@
           <td>
             <span class="label-color-box" style="background:<%= task.label %>;">
             </span>
-            <%= link_to(edit_task_path(task)) do %>
+            <%= link_to(edit_user_task_path(task)) do %>
               <div class="task-title">
                 <%= task.title %>
               </div>
@@ -34,7 +34,7 @@
             <% end %>
 
             <!-- 実行中へのボタン --> 
-            <%= form_for(task) do |f| %>
+            <%= form_for [:user, task] do |f| %>
               <div class="form">
                 <div class="form-body">
                   <%= f.hidden_field :status, value: "doing" %>
@@ -58,7 +58,7 @@
           <td>
             <span class="label-color-box" style="background:<%= task.label %>;">
             </span>
-            <%= link_to(edit_task_path(task)) do %>
+            <%= link_to(edit_user_task_path(task)) do %>
               <div class="task-title">
                 <%= task.title %>
               </div>
@@ -68,7 +68,7 @@
             <% end %>
 
             <!-- 実行中へのボタン --> 
-            <%= form_for(task) do |f| %>
+            <%= form_for [:user, task] do |f| %>
               <div class="form upgrade-button">
                 <div class="form-body">
                   <%= f.hidden_field :status, value: "done" %>
@@ -92,7 +92,7 @@
           <td>
             <span class="label-color-box" style="background:<%= task.label %>;">
             </span>
-            <%= link_to(edit_task_path(task)) do %>
+            <%= link_to(edit_user_task_path(task)) do %>
               <div class="task-title">
                 <%= task.title %>
               </div>
@@ -109,7 +109,8 @@
 
   <!-- 新規登録フォーム -->
   <div class="task-new-form">
-    <%= form_for (@task) do |f| %>
+    <%= render partial: "partials/error_message", locals: { thing: @task } %>
+    <%= form_for [:user, @task] do |f| %>
     <div class="form">
       <div class="form-body">
         <%= f.text_field :title, :class => "form-control"  %>

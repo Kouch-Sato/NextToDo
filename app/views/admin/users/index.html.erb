@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>This is admin home.</h1>
+  <h2>ユーザー一覧</h2>
+  <table class="table table-bordered">
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= image_tag user.image.url, class: "current_user-image" %>
+          <%= link_to(user.name, edit_admin_user_path(user)) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <h2>新しいユーザーを作ることができます。</h2>
+  <h4>※パスワードは本人に変更させてください。</h4>
+  <div class="container">
+    <%= render partial: "partials/error_message", locals: { thing: @user } %>
+    <%= form_for [:admin, @user] do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %>
+    </div>
+    <div class="form-group">
+      <%= f.email_field :email, :class => "form-control", :placeholder => "Email" %>
+    </div>
+    <div class="form-group">
+      <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "登録", :class => "btn btn-success" %>
+    </div>
+    <% end %>
+  </div>
+</div>  
