@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   namespace :user do
+    get "aa", to: "tasks#tasks"
     get "tasks/calendar"
     get "tasks/graph"
     resources :tasks
