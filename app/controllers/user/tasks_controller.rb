@@ -15,6 +15,7 @@ class User::TasksController < ApplicationController
     @task = Task.new
     @label = params[:label]
     @share_tasks = Task.share.page(params[:page]).per(PER)
+    @alert_tasks = @current_user.tasks.alert.page(params[:page]).per(PER)
   end
 
   def create

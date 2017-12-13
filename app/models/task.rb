@@ -13,6 +13,7 @@ class Task < ApplicationRecord
     scope :doing, -> { where(status: "doing") }
     scope :done, -> { where(status: "done") }
     scope :share, -> { where(share: "yes") }
+    scope :alert, -> { where(due_date: Date.today - 30..Date.today + 2) }
 
     scope :get_by_label, -> (label) {
         where(label: label)
