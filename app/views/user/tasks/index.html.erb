@@ -29,31 +29,31 @@
     <div class="table-wrapper">
       <p class="table-title">未着手のタスク</p>
       <div id="table1">
-        <%= render :partial => 'tasks', locals: { tasks: @yet_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @yet_tasks, param_name: "yet_tasks_page" } %>
       </div>
     </div>    
     <div class="table-wrapper">
       <p class="table-title">実行中のタスク</p>
       <div id="table2">
-        <%= render :partial => 'tasks', locals: { tasks: @doing_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @doing_tasks, param_name: "doing_tasks_page" } %>
       </div>
     </div>  
     <div class="table-wrapper">
       <p class="table-title">完了したタスク</p>
       <div id="table3">
-        <%= render :partial => 'tasks', locals: { tasks: @done_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @done_tasks, param_name: "done_tasks_page" } %>
       </div>  
     </div>
     <div class="table-wrapper">
       <p class="table-title">共有タスク</p>
       <div id="table4">
-        <%= render :partial => 'tasks', locals: { tasks: @share_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @share_tasks, param_name: "share_tasks_page" } %>
       </div> 
     </div>
     <div class="table-wrapper"> 
       <p class="table-title">終了期限が近いタスク</p> 
       <div id="table5">
-        <%= render :partial => 'tasks', locals: { tasks: @alert_tasks } %>
+        <%= render :partial => 'tasks', locals: { tasks: @alert_tasks, param_name: "alert_tasks_page" } %>
       </div>
     </div>
   </div>  
