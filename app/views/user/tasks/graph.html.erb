@@ -1,3 +1,7 @@
 <div class="container">
-  <h1>this is graph</h1>
+  <h1>自分の投稿の統計を見ることができます。</h1>
+  <h3 class="graph-title">ラベルの統計</h3>
+  <%= pie_chart @current_user.tasks.group(:label).count %>
+  <h3 class="graph-title">ステータスの統計</h3>
+  <%= pie_chart @current_user.tasks.group(:status).count, colors: ["gray", "blue", "black"] %>
 </div>

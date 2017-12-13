@@ -60,9 +60,11 @@ class User::TasksController < ApplicationController
   end
 
   def calendar
+    
   end
 
   def graph
+    @tasks_data = @current_user.tasks.order('created_at ASC').group(:created_at).count
   end
 
   private

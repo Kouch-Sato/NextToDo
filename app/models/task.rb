@@ -6,7 +6,7 @@ class Task < ApplicationRecord
     validates :label, { presence: true }
 
     enum status: [:yet, :doing, :done]
-    enum label: [:red, :yellow, :green, :blue]
+    enum label: [:blue, :red, :yellow, :green]
     enum share: [:no, :yes]
 
     scope :yet, -> { where(status: "yet") }
