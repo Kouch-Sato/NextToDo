@@ -52,6 +52,8 @@ class User::TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
+      @task.start = @task.due_date
+      @task.save
       redirect_to user_tasks_path, notice: "タスクを編集しました"
     else 
       render :edit
@@ -68,10 +70,7 @@ class User::TasksController < ApplicationController
   end
 
   def tasks
-    @tasks = Task.all
-    @tasks.each do |task|
-      task.start = task.due_date
-    end
+    @tasks = Task.where("start IS NOT NULL")
     
     respond_to do |format|
       format.json {
