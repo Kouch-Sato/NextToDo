@@ -1,6 +1,9 @@
 class Task < ApplicationRecord
     belongs_to :user
 
+    include RankedModel
+    ranks :row_order
+
     validates :title, { presence: true }
     validates :status, { presence: true }
     validates :label, { presence: true }

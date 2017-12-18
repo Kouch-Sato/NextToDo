@@ -17,3 +17,4 @@
 //= require_tree .
 //= require moment
 //= require fullcalendar
+//= require jquery-ui/widgets/sortable

@@ -5,14 +5,17 @@ Rails.application.routes.draw do
   get "login" => "users#login_form"
 
   namespace :admin do
-    resources :users
+    resources :users do
+    end  
   end
 
   namespace :user do
     get "tasks_for_calendar", to: "tasks#tasks"
     get "tasks/calendar"
     get "tasks/graph"
-    resources :tasks
+    resources :tasks do 
+      put :sort
+    end  
   end  
 
   resources :users

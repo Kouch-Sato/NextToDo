@@ -84,10 +84,17 @@ class User::TasksController < ApplicationController
 
   def graph
     @tasks_data = @current_user.tasks.order('created_at ASC').group(:created_at).count
+    @tasks = Task.rank(:row_order)
+  end
+
+  def sort
+    @task = Task.find(params[:id])
+    @task.update(task_params)
+    render nothing: true
   end
 
   private
   def task_params
-    params.require(:task).permit(:title, :body, :status, :due_date, :label, :share)
+    params.require(:task).permit(:title, :body, :status, :due_date, :label, :share, :row_order_position)
   end
 end
