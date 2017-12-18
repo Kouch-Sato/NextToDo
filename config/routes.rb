@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get "tasks/calendar"
     get "tasks/graph"
     resources :tasks do 
-      put :sort
+      patch :sort
     end  
   end  
 
