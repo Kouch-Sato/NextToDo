@@ -9,20 +9,19 @@ $(document).ready(function(){
 		update: function(e, ui) {
 			var item, item_data, params;
 			item = ui.item;
-			item_data = item.data();
+			item_data = item.data('target');
 			params = {
-			  _method: 'put'
+			  _method: 'patch'
 			};
-			params[item_data.modelName] = {
+			params[item_data.model_name] = {
 			  row_order_position: item.index()
 			};
-			$.ajax;
-			return {
+			$.ajax ({
         type: 'POST',
-        url: item_data.updateUrl,
+        url: item_data.update_url,
         dataType: 'json',
         data: params
-			};
+			});
 		}
 	})
 });

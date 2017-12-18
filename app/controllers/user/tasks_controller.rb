@@ -88,9 +88,9 @@ class User::TasksController < ApplicationController
   end
 
   def sort
-    @task = Task.find(params[:id])
+    @task = Task.find_by(id: params[:task_id])
     @task.update(task_params)
-    render nothing: true
+    head :ok
   end
 
   private

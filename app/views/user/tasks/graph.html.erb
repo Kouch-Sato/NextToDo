@@ -8,7 +8,7 @@
 
 <table class="table table-sortable">
   <% @tasks.each do |task| %>
-    <tr class="item" data="{ model_name: '<%= task.class.name.underscore %>', update_url: '<%= user_task_sort_path(task) %>' }">
+    <tr class="item" data-target='{ "model_name": "<%= task.class.name.underscore %>", "update_url": "<%= user_task_sort_path(task) %>" }'>
     <td>
       <div class="task-title">
         <%= task.title %>
