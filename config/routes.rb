@@ -1,21 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :user do
-    get 'groups/index'
-  end
-
-  namespace :user do
-    get 'groups/create'
-  end
-
-  namespace :user do
-    get 'groups/edit'
-  end
-
-  namespace :user do
-    get 'groups/destroy'
-  end
-
   post "login" => "users#login"
   post "logout" => "users#logout"
   get "login" => "users#login_form"
@@ -32,7 +16,7 @@ Rails.application.routes.draw do
     resources :tasks do 
       patch :sort
     end
-    resources :group
+    resources :groups
   end  
 
   resources :users
