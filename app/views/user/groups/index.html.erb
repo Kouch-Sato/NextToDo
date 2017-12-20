@@ -1,2 +1,24 @@
-<h1>User::Groups#index</h1>
-<p>Find me in app/views/user/groups/index.html.erb</p>
+<div class="container">
+	<h1>This is admin home.</h1>
+	<h2>ユーザー一覧</h2>
+	<%= render partial: "partials/error_message", locals: { thing: @group } %>
+  <%= form_for [:user, @group] do |f| %>
+    <div class="form">
+      <div class="form-group">
+        <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "登録", :class => "btn btn-success" %>
+      </div>
+    </div>  
+  <% end %>
+  <table class="table table-bordered">
+    <% @groups.each do |group| %>
+      <tr>
+        <td>
+          <%= link_to(group.name, edit_user_group_path(group)) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

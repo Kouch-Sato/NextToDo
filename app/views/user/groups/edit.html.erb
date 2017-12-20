@@ -1,2 +1,28 @@
-<h1>User::Groups#edit</h1>
-<p>Find me in app/views/user/groups/edit.html.erb</p>
+<div class="container">
+	<h1>グループを編集してください</h1>
+	<%= render partial: "partials/error_message", locals: { thing: @group } %>
+  <%= form_for [:user, @group] do |f| %>
+    <div class="form">
+      <div class="form-group">
+        <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %>
+      </div>
+      <div class="form-group">
+        <%= f.collection_check_boxes :user_ids, User.all, :id, :name %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "更新", :class => "btn btn-success" %>
+      </div>
+    </div>  
+  <% end %>
+  <table class="table table-bordered">
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.name %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "グループを削除", user_group_path(@group), method: :delete %><br>
+  <%= link_to "一覧に戻る", user_groups_path %>
+</div>
