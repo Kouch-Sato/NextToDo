@@ -73,18 +73,18 @@ class User::TasksController < ApplicationController
   end
 
   def tasks_for_index(params)
+    @tasks = @current_user.user_group_tasks.or(@current_user.tasks)
     if params[:label].present?
-      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:yet_tasks_page]).per(PER).desc
-      @yet_tasks << @current_user.tasks.yet.get_by_label(params[:label]).page(params[:yet_tasks_page]).per(PER).desc
-      
-      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:doing_tasks_page]).per(PER).desc
-      @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:done_tasks_page]).per(PER).desc
-      @alert_tasks = @current_user.tasks.alert.get_by_label(params[:label]).page(params[:alert_tasks_page]).per(PER).desc
+      @yet_tasks = @tasks.yet.get_by_label(params[:label]).page(params[:yet_tasks_page]).per(PER).desc
+      @doing_tasks = @tasks.doing.get_by_label(params[:label]).page(params[:doing_tasks_page]).per(PER).desc
+      @done_tasks = @tasks.done.get_by_label(params[:label]).page(params[:done_tasks_page]).per(PER).desc
+      @alert_tasks = @tasks.alert.get_by_label(params[:label]).page(params[:alert_tasks_page]).per(PER).desc
     else
-      @yet_tasks = @current_user.tasks.yet.page(params[:yet_tasks_page]).per(PER).desc
-      @doing_tasks = @current_user.tasks.doing.page(params[:doing_tasks_page]).per(PER).desc
-      @done_tasks = @current_user.tasks.done.page(params[:done_tasks_page]).per(PER).desc
-      @alert_tasks = @current_user.tasks.alert.page(params[:alert_tasks_page]).per(PER).desc
+      #@yet_tasks = @current_user.tasks.yet.page(params[:yet_tasks_page]).per(PER).desc
+      @yet_tasks = @tasks.yet.page(params[:yet_tasks_page]).per(PER).desc
+      @doing_tasks = @tasks.doing.page(params[:doing_tasks_page]).per(PER).desc
+      @done_tasks = @tasks.done.page(params[:done_tasks_page]).per(PER).desc
+      @alert_tasks = @tasks.alert.page(params[:alert_tasks_page]).per(PER).desc
     end
   end  
   
