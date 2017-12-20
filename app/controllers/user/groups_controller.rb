@@ -18,6 +18,7 @@ class User::GroupsController < ApplicationController
 
   def update 
     @group = Group.find(params[:id])
+    @users = User.includes(:groups).where('groups.id' => @group.id)
     if @group.update(group_params)
       @group.save
       redirect_to user_groups_path, notice: "グループを編集しました"

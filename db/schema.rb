@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171219085842) do
+ActiveRecord::Schema.define(version: 20171220013057) do
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 20171219085842) do
     t.integer "status"
     t.integer "label", default: 0, null: false
     t.integer "user_id"
-    t.integer "share", default: 0, null: false
     t.date "start"
     t.integer "row_order"
+    t.integer "group_id", default: 0
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20171219085842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0, null: false
+    t.integer "share"
   end
 
   add_foreign_key "groups_users", "groups"

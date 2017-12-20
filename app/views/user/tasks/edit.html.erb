@@ -32,11 +32,9 @@
       </div>
       <br><br><br><br><br>
       <div class="form-group">
-        <%= f.label :share_no, "共有しない" %>
-        <%= f.radio_button :share, "no" %>
-        <%= f.label :share_yes, "共有する" %>
-        <%= f.radio_button :share, "yes" %>
-      </div>  
+        <p>タスクをグループで共有しますか？</p>
+        <%= f.collection_radio_buttons :group_id, Group.all, :id, :name %>
+      </div>
       <div class="form-group">
         <%= f.submit "更新", :class => "btn btn-success" %>
       </div>

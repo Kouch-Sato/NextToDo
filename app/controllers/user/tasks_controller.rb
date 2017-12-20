@@ -7,13 +7,11 @@ class User::TasksController < ApplicationController
       @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:yet_tasks_page]).per(PER)
       @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:doing_tasks_page]).per(PER)
       @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:done_tasks_page]).per(PER)
-      @share_tasks = Task.share.get_by_label(params[:label]).page(params[:share_tasks_page]).per(PER)
       @alert_tasks = @current_user.tasks.alert.get_by_label(params[:label]).page(params[:alert_tasks_page]).per(PER)
     else
       @yet_tasks = @current_user.tasks.yet.page(params[:yet_tasks_page]).per(PER)
       @doing_tasks = @current_user.tasks.doing.page(params[:doing_tasks_page]).per(PER)
       @done_tasks = @current_user.tasks.done.page(params[:done_tasks_page]).per(PER)
-      @share_tasks = Task.share.page(params[:share_tasks_page]).per(PER)
       @alert_tasks = @current_user.tasks.alert.page(params[:alert_tasks_page]).per(PER)
     end
     @task = Task.new
@@ -25,16 +23,13 @@ class User::TasksController < ApplicationController
       @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:yet_tasks_page]).per(PER)
       @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:doing_tasks_page]).per(PER)
       @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:done_tasks_page]).per(PER)
-      @share_tasks = Task.share.get_by_label(params[:label]).page(params[:share_tasks_page]).per(PER)
       @alert_tasks = @current_user.tasks.alert.get_by_label(params[:label]).page(params[:alert_tasks_page]).per(PER)
     else
       @yet_tasks = @current_user.tasks.yet.page(params[:yet_tasks_page]).per(PER)
       @doing_tasks = @current_user.tasks.doing.page(params[:doing_tasks_page]).per(PER)
       @done_tasks = @current_user.tasks.done.page(params[:done_tasks_page]).per(PER)
-      @share_tasks = Task.share.page(params[:share_tasks_page]).per(PER)
       @alert_tasks = @current_user.tasks.alert.page(params[:alert_tasks_page]).per(PER)
     end
-
     @task = Task.new(task_params)
     @task.status = "yet"
     @task.user_id = @current_user.id
@@ -95,6 +90,6 @@ class User::TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :body, :status, :due_date, :label, :share, :row_order_position)
+    params.require(:task).permit(:title, :body, :status, :due_date, :label, :group_id, :row_order_position)
   end
 end
