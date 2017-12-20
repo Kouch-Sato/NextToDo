@@ -1,6 +1,5 @@
 <div class="container">
-	<h1>This is admin home.</h1>
-	<h2>ユーザー一覧</h2>
+	<h1>あなたのグループ一覧です。</h1>
 	<%= render partial: "partials/error_message", locals: { thing: @group } %>
   <%= form_for [:user, @group] do |f| %>
     <div class="form">

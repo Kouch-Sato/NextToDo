@@ -3,33 +3,12 @@ class User::TasksController < ApplicationController
   PER = 5
 
   def index
-    if params[:label].present?
-      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:yet_tasks_page]).per(PER)
-      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:doing_tasks_page]).per(PER)
-      @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:done_tasks_page]).per(PER)
-      @alert_tasks = @current_user.tasks.alert.get_by_label(params[:label]).page(params[:alert_tasks_page]).per(PER)
-    else
-      @yet_tasks = @current_user.tasks.yet.page(params[:yet_tasks_page]).per(PER)
-      @doing_tasks = @current_user.tasks.doing.page(params[:doing_tasks_page]).per(PER)
-      @done_tasks = @current_user.tasks.done.page(params[:done_tasks_page]).per(PER)
-      @alert_tasks = @current_user.tasks.alert.page(params[:alert_tasks_page]).per(PER)
-    end
+    tasks_for_index(params)
     @task = Task.new
   end
 
   def create
-    /renderのときのためのindexの変数達/
-    if params[:label].present?
-      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:yet_tasks_page]).per(PER)
-      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:doing_tasks_page]).per(PER)
-      @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:done_tasks_page]).per(PER)
-      @alert_tasks = @current_user.tasks.alert.get_by_label(params[:label]).page(params[:alert_tasks_page]).per(PER)
-    else
-      @yet_tasks = @current_user.tasks.yet.page(params[:yet_tasks_page]).per(PER)
-      @doing_tasks = @current_user.tasks.doing.page(params[:doing_tasks_page]).per(PER)
-      @done_tasks = @current_user.tasks.done.page(params[:done_tasks_page]).per(PER)
-      @alert_tasks = @current_user.tasks.alert.page(params[:alert_tasks_page]).per(PER)
-    end
+    tasks_for_index(params)
     @task = Task.new(task_params)
     @task.status = "yet"
     @task.user_id = @current_user.id
@@ -92,4 +71,19 @@ class User::TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :body, :status, :due_date, :label, :group_id, :row_order_position)
   end
+
+  def tasks_for_index(params)
+    if params[:label].present?
+      @yet_tasks = @current_user.tasks.yet.get_by_label(params[:label]).page(params[:yet_tasks_page]).per(PER)
+      @doing_tasks = @current_user.tasks.doing.get_by_label(params[:label]).page(params[:doing_tasks_page]).per(PER)
+      @done_tasks = @current_user.tasks.done.get_by_label(params[:label]).page(params[:done_tasks_page]).per(PER)
+      @alert_tasks = @current_user.tasks.alert.get_by_label(params[:label]).page(params[:alert_tasks_page]).per(PER)
+    else
+      @yet_tasks = @current_user.tasks.yet.page(params[:yet_tasks_page]).per(PER)
+      @doing_tasks = @current_user.tasks.doing.page(params[:doing_tasks_page]).per(PER)
+      @done_tasks = @current_user.tasks.done.page(params[:done_tasks_page]).per(PER)
+      @alert_tasks = @current_user.tasks.alert.page(params[:alert_tasks_page]).per(PER)
+    end
+  end  
+  
 end

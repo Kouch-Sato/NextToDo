@@ -1,12 +1,12 @@
 class User::GroupsController < ApplicationController
   def index
-    @groups = Group.all
     @group = Group.new
+    @groups = @current_user.groups
   end
 
   def create
     @group = Group.new(group_params)
-    @groups = Group.all
+    @groups = @current_user.groups
     if @group.save
       @current_user.groups << Group.find(@group.id)
       @current_user.save

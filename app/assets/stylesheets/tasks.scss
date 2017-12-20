@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+a { 
+    text-decoration: none;
+}
+
+a:hover { 
+    text-decoration: none;
+}
+
 .hidden {
     display: none;
 }
