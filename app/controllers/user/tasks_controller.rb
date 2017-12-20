@@ -69,7 +69,7 @@ class User::TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :body, :status, :due_date, :label, :group_id, :row_order_position)
+    params.require(:task).permit(:title, :body, :status, :due_date, :label, :group_id, :row_order_position, :file)
   end
 
   def tasks_for_index(params)

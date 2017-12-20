@@ -31,6 +31,14 @@
         <%= f.label :label_blue, "blue", :class => "label label-blue" %>
       </div>
       <br><br><br><br><br>
+      <p>ファイルを添付しますか？</p>
+      <%= link_to 'download', "/uploads/task/file/#{@task.id}/#{@task.file_identifier}/", download: "test" %> 
+      <% if @task.file.present? %>
+        <%= image_tag @task.file.url, class: "current_user-image" %>
+      <% end %>  
+      <div class="form-group">
+        <%= f.file_field :file, :class => "form-control" %>
+      </div>
       <div class="form-group">
         <p>タスクをグループで共有しますか？</p>
         <%= f.collection_radio_buttons :group_id, Group.all, :id, :name %>
