@@ -44,15 +44,12 @@ class User::TasksController < ApplicationController
   end
 
   def tasks
-    @tasks = Task.where("start IS NOT NULL")
-    
+    tasks_for_calendar = Task.where.not(due_date: nil).map do |task|
+        { start: task.due_date, title: task.title }
+    end    
+
     respond_to do |format|
-      format.json {
-        render json:
-          @tasks.to_json(
-            only: [:title, :start]
-          )
-      }
+      format.json { render json: tasks_for_calendar }
     end
   end
 
