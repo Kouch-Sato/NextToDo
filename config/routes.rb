@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     resources :tasks do 
       patch :sort
     end
-    resources :groups
+    resources :groups do 
+      patch :sort
+    end  
   end  
 
   resources :users

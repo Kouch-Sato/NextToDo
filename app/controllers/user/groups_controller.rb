@@ -1,7 +1,7 @@
 class User::GroupsController < ApplicationController
   def index
     @group = Group.new
-    @groups = @current_user.groups
+    @groups = @current_user.groups.rank(:row_order)
   end
 
   def create
@@ -38,8 +38,14 @@ class User::GroupsController < ApplicationController
     redirect_to user_groups_path, notice: "グループを削除しました"
   end
 
+  def sort
+    @group = Group.find_by(id: params[:group_id])
+    @group.update(group_params)
+    head :ok
+  end
+
   private 
   def group_params
-     params.require(:group).permit(:name, { :user_ids => [] })
+     params.require(:group).permit(:name, :row_order_position, { :user_ids => [] })
   end  
 end

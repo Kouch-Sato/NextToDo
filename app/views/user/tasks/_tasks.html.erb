@@ -2,20 +2,6 @@
   <% tasks.each do |task| %>
     <tr>
     <td>
-      <span class="label-color-box" style="background:<%= task.label %>;">
-      </span>
-      <%= link_to(edit_user_task_path(task)) do %>
-        <div class="task-title">
-          <%= task.title %>
-        </div>
-        <div class="task-due_date">
-          <%= task.due_date %>
-        </div>
-      <% end %>
-      
-      <div class="move-botton">
-        <%= image_tag task.user.image.url, class: "task-user-image" %>
-      </div> 
 
       <div class="move-botton">
         <% if task.status == "yet" %>
@@ -47,7 +33,19 @@
             <%= link_to "削除する", user_task_path(task), method: :delete, :class => "btn btn-danger" %>
           </div>  
         <% end %> 
-      </div>
+      </div>  
+
+      <div class="image-wrapper">
+        <%= image_tag task.user.image.url, class: "task-user-image" %>
+      </div> 
+
+      <span class="label-color-box" style="background:<%= task.label %>;">
+      </span>
+      <%= link_to(edit_user_task_path(task)) do %>
+        <div class="task-title">
+          <%= task.title %>
+        </div>
+      <% end %>
 
       <div class="group-name">
         <% if task.group_id == 0 %>

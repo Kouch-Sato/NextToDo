@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :forbid_not_login_user, only: [:edit, :update, :logout]
   before_action :forbid_login_user, only: [:login, :login_form]
+  before_action :ensure_corret_user, only: [:edit, :update]
 
   def edit
     @user = User.find(params[:id])
@@ -38,6 +39,12 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :image)
+  end
+
+  def ensure_corret_user
+    if session[:user_id] != params[:id].to_i
+      redirect_to user_tasks_path, notice: "他のユーザーの情報は編集できません"
+    end
   end
   
 end

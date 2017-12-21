@@ -81,3 +81,15 @@ a:hover {
     border-bottom: 1px solid gray;
     padding: 10px;
 }
+
+.move-botton {
+    display: inline-box;
+    float: right;
+}
+
+.group-name {
+    margin-top: 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: gray;
+}
