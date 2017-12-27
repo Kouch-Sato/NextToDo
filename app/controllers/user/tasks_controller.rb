@@ -10,7 +10,7 @@ class User::TasksController < ApplicationController
   def create
     tasks_for_index(params)
     @task = Task.new(task_params)
-    @task.status = "yet"
+    @task.yet!
     @task.user_id = @current_user.id
     if @task.save
       redirect_to user_tasks_path, notice: "新しいタスクを作成しました" 
@@ -26,7 +26,6 @@ class User::TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      @task.start = @task.due_date
       @task.save
       redirect_to user_tasks_path, notice: "タスクを編集しました"
     else 

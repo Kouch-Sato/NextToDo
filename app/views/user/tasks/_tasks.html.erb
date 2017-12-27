@@ -4,7 +4,7 @@
     <td>
 
       <div class="move-botton">
-        <% if task.status == "yet" %>
+        <% if task.yet? %>
           <!-- 実行中へのボタン --> 
           <%= form_for [:user, task] do |f| %>
             <div class="form">
@@ -16,7 +16,7 @@
               </div>
             </div>
           <% end %>
-        <% elsif task.status == "doing" %>
+        <% elsif task.doing? %>
           <!-- 完了済みのボタン --> 
           <%= form_for [:user, task] do |f| %>
             <div class="form upgrade-button">
@@ -28,7 +28,7 @@
               </div>
             </div>
           <% end %>
-        <% elsif task.status == "done" %>
+        <% elsif task.done? %>
           <div class="form-group">
             <%= link_to "削除する", user_task_path(task), method: :delete, :class => "btn btn-danger" %>
           </div>  

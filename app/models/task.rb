@@ -12,9 +12,6 @@ class Task < ApplicationRecord
 	enum status: [:yet, :doing, :done]
 	enum label: [:blue, :red, :yellow, :green]
 
-	scope :yet, -> { where(status: "yet") }
-	scope :doing, -> { where(status: "doing") }
-	scope :done, -> { where(status: "done") }
 	scope :alert, -> { where(due_date: Date.today - 30..Date.today + 2) }
 	scope :desc, -> { order(created_at: :desc) }
 	scope :get_by_label, -> (label) {
