@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates :password, { presence: true }
   validates :role, { presence: true }
 
-  enum role: [:not_admin, :admin]
+  enum role: [:user, :admin]
 
   has_many :tasks, dependent: :delete_all
   has_and_belongs_to_many :groups
