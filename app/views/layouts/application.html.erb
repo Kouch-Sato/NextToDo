@@ -4,8 +4,6 @@
     <title>NextToDo</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
     <nav class="navbar navbar-default">
@@ -41,6 +39,8 @@
       </div>  
     <% end %>
     <%= yield %>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
   <script type="text/javascript">
   </script>
