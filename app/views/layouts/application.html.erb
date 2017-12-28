@@ -4,27 +4,39 @@
     <title>NextToDo</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <header>
+    <% if @current_user %>
     <nav class="navbar navbar-default">
       <ul class="nav navbar-nav">
-        <% if @current_user %>
-          <li><%= link_to("Next To Do", user_tasks_path) %></li>
-          <li><%= link_to("カレンダー", user_tasks_calendar_path) %></li>
-          <li><%= link_to("グラフ", user_tasks_graph_path) %></li>
-          <li><%= link_to("グループ", user_groups_path) %></li>
-        <% end %>
+        <li><%= link_to("Next To Do", user_tasks_path, class: "navbar-brand") %></li>
+        <li>
+          <%= link_to(user_tasks_calendar_path) do %>
+            <i class="fa fa-calendar" style="font-size: 18px"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to(user_tasks_graph_path) do %>
+            <i class="fa fa-pie-chart" style="font-size: 18px"></i>
+          <% end %>  
+        </li>
+        <li>
+          <%= link_to(user_groups_path) do %>
+            <i class="fa fa-group" style="font-size: 18px"></i>
+          <% end %>
+        </li>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <% if @current_user %>
-          <% if @current_user.admin? %>
-            <li><%= link_to("Admin Modeへ", admin_users_path) %></li>
-          <% end %>  
-          <li><%= link_to(@current_user.name, edit_user_path(@current_user)) %></li>
-          <li><%= link_to("ログアウト", "/logout", method: :post) %></li>
+        <% if @current_user.admin? %>
+          <li><%= link_to("Admin Modeへ", admin_users_path) %></li>
         <% end %>  
+        <li><%= link_to(@current_user.name, edit_user_path(@current_user)) %></li>
+        <li><%= link_to("ログアウト", "/logout", method: :post) %></li> 
       </ul>
     </nav>
+    <% end %>
   </header>
 
   <body>
