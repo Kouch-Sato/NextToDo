@@ -8,11 +8,11 @@
           <!-- 実行中へのボタン --> 
           <%= form_for [:user, task] do |f| %>
             <div class="form">
+              <%= f.hidden_field :status, value: "doing" %>
               <div class="form-group">
-                <%= f.hidden_field :status, value: "doing" %>
-              </div>
-              <div class="form-group">
-                <%= f.submit "実行中へ", :class => "btn btn-info" %>  
+                <%= button_tag :type => "submit", :class => "btn btn-info" do %> 
+                  <i class="glyphicon glyphicon-play"></i>
+                <% end %> 
               </div>
             </div>
           <% end %>
@@ -20,17 +20,20 @@
           <!-- 完了済みのボタン --> 
           <%= form_for [:user, task] do |f| %>
             <div class="form upgrade-button">
+              <%= f.hidden_field :status, value: "done" %>
               <div class="form-group">
-                <%= f.hidden_field :status, value: "done" %>
-              </div>
-              <div class="form-group">
-                <%= f.submit "完了済みへ", :class => "btn btn-primary" %>  
+                <%= button_tag :type => "submit", :class => "btn btn-primary" do %> 
+                  <i class="glyphicon glyphicon-play"></i>
+                <% end %>  
               </div>
             </div>
           <% end %>
         <% elsif task.done? %>
+          <div></div>
           <div class="form-group">
-            <%= link_to "削除する", user_task_path(task), method: :delete, :class => "btn btn-danger" %>
+            <%= button_to(user_task_path(task), method: :delete, class: "btn btn-danger") do %>
+              <i class="glyphicon glyphicon-remove"></i>
+            <% end %>
           </div>  
         <% end %> 
       </div>  
