@@ -44,7 +44,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def forbid_not_admin_user
-    if @current_user.role != "admin"
+    if @current_user.user?
       redirect_to user_tasks_path, alert:"あなたは管理ユーザーではありません"
     end
   end

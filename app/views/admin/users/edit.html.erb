@@ -13,9 +13,9 @@
       <%= f.file_field :image, :class => "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :role_not_admin, "権限なし" %>
-      <%= f.radio_button :role, "not_admin" %>
-      <%= f.label :label_admin, "権限あり" %>
+      <%= f.label :role_not_user, "権限なし" %>
+      <%= f.radio_button :role, "user" %>
+      <%= f.label :role_admin, "権限あり" %>
       <%= f.radio_button :role, "admin" %>
     </div>  
     <div class="form-group">

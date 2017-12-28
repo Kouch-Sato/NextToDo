@@ -1,0 +1,62 @@
+<table class="table">
+  <% tasks.each do |task| %>
+    <tr>
+    <td>
+
+      <div class="move-botton">
+        <% if task.yet? %>
+          <!-- 実行中へのボタン --> 
+          <%= form_for [:user, task] do |f| %>
+            <div class="form">
+              <div class="form-group">
+                <%= f.hidden_field :status, value: "doing" %>
+              </div>
+              <div class="form-group">
+                <%= f.submit "実行中へ", :class => "btn btn-info" %>  
+              </div>
+            </div>
+          <% end %>
+        <% elsif task.doing? %>
+          <!-- 完了済みのボタン --> 
+          <%= form_for [:user, task] do |f| %>
+            <div class="form upgrade-button">
+              <div class="form-group">
+                <%= f.hidden_field :status, value: "done" %>
+              </div>
+              <div class="form-group">
+                <%= f.submit "完了済みへ", :class => "btn btn-primary" %>  
+              </div>
+            </div>
+          <% end %>
+        <% elsif task.done? %>
+          <div class="form-group">
+            <%= link_to "削除する", user_task_path(task), method: :delete, :class => "btn btn-danger" %>
+          </div>  
+        <% end %> 
+      </div>  
+
+      <div class="image-wrapper">
+        <%= image_tag task.user.image.url, class: "task-user-image" %>
+      </div> 
+
+      <span class="label-color-box" style="background:<%= task.label %>;">
+      </span>
+      <%= link_to(edit_user_task_path(task)) do %>
+        <div class="task-title">
+          <%= task.title %>
+        </div>
+      <% end %>
+
+      <div class="group-name">
+        <% if task.group_id == 0 %>
+        　個人タスク
+        <% else %>
+          <%= task.group.name %>  
+        <% end %>  
+      </div>
+  
+    </td>
+    </tr>
+  <% end %>
+</table>
+<%= paginate tasks, param_name: param_name, :class => "pagenation-bar" %>

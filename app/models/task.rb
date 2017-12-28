@@ -1,19 +1,23 @@
 class Task < ApplicationRecord
-    belongs_to :user
+	belongs_to :user
+	belongs_to :group
 
-    validates :title, { presence: true }
-    validates :status, { presence: true }
-    validates :label, { presence: true }
+	include RankedModel
+	ranks :row_order
 
-    enum status: [:yet, :doing, :done]
-    enum label: [:red, :yellow, :green, :blue]
+	validates :title, { presence: true }
+	validates :status, { presence: true }
+	validates :label, { presence: true }
 
-    scope :yet, -> { where(status: "yet") }
-    scope :doing, -> { where(status: "doing") }
-    scope :done, -> { where(status: "done") }
+	enum status: [:yet, :doing, :done]
+	enum label: [:blue, :red, :yellow, :green]
 
-    scope :get_by_label, -> (label) {
-        where(label: label)
-    }
+	scope :alert, -> { where(due_date: Date.today - 30..Date.today + 2) }
+	scope :desc, -> { order(created_at: :desc) }
+	scope :get_by_label, -> (label) {
+			where(label: label)
+	}
+
+	mount_uploader :file, FileUploader
 
 end

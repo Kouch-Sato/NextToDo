@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206085652) do
+ActiveRecord::Schema.define(version: 20171227084507) do
+
+  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "row_order"
+  end
+
+  create_table "groups_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["group_id"], name: "index_groups_users_on_group_id"
+    t.index ["user_id"], name: "index_groups_users_on_user_id"
+  end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -21,6 +35,9 @@ ActiveRecord::Schema.define(version: 20171206085652) do
     t.integer "status"
     t.integer "label", default: 0, null: false
     t.integer "user_id"
+    t.integer "row_order"
+    t.integer "group_id", default: 0
+    t.binary "file"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -31,6 +48,9 @@ ActiveRecord::Schema.define(version: 20171206085652) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0, null: false
+    t.integer "share"
   end
 
+  add_foreign_key "groups_users", "groups"
+  add_foreign_key "groups_users", "users"
 end

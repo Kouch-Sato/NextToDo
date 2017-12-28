@@ -1,0 +1,23 @@
+<div class="container">
+	<h1>あなたのグループ一覧です。</h1>
+	<%= render partial: "partials/error_message", locals: { thing: @group } %>
+  <%= form_for [:user, @group] do |f| %>
+    <div class="form">
+      <div class="form-group">
+        <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "登録", :class => "btn btn-success" %>
+      </div>
+    </div>  
+  <% end %>
+  <table class="table table-sortable">
+  <% @groups.each do |group| %>
+    <tr class="item" data-target='{ "model_name": "<%= group.class.name.underscore %>", "update_url": "<%= user_group_sort_path(group) %>" }'>
+    <td>
+      <%= link_to(group.name, edit_user_group_path(group)) %>
+    </td>
+    </tr>
+  <% end %>
+  </table>
+</div>

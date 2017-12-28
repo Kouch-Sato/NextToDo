@@ -4,6 +4,7 @@
     <title>NextToDo</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
@@ -13,11 +14,14 @@
           <li><%= link_to("Next To Do", user_tasks_path) %></li>
           <li><%= link_to("カレンダー", user_tasks_calendar_path) %></li>
           <li><%= link_to("グラフ", user_tasks_graph_path) %></li>
+          <li><%= link_to("グループ", user_groups_path) %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if @current_user %>
-          <li><%= link_to("User Mode", admin_users_path) %></li>
+          <% if @current_user.admin? %>
+            <li><%= link_to("Admin Modeへ", admin_users_path) %></li>
+          <% end %>  
           <li><%= link_to(@current_user.name, edit_user_path(@current_user)) %></li>
           <li><%= link_to("ログアウト", "/logout", method: :post) %></li>
         <% end %>  
