@@ -32,7 +32,11 @@
         <% if @current_user.admin? %>
           <li><%= link_to("Admin Modeへ", admin_users_path) %></li>
         <% end %>  
-        <li><%= link_to(@current_user.name, edit_user_path(@current_user)) %></li>
+        <li>
+          <%= link_to(edit_user_path(@current_user)) do %>
+            <%= image_tag @current_user.image.url, class: "navbar_user-image" %>
+          <% end %>  
+        </li>
         <li><%= link_to("ログアウト", "/logout", method: :post) %></li> 
       </ul>
     </nav>

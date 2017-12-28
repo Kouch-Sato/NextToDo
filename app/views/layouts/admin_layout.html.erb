@@ -13,7 +13,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to("User Modeへ", user_tasks_path) %></li>
-        <li><%= link_to(@current_user.name) %></li>
+        <li>
+          <%= link_to(edit_user_path(@current_user)) do %>
+            <%= image_tag @current_user.image.url, class: "navbar_user-image" %>
+          <% end %>  
+        </li>
         <li><%= link_to("ログアウト", "/logout", method: :post) %></li>
       </ul>
     </nav>

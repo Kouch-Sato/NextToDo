@@ -1,6 +1,4 @@
 <div class="container">
-  <%= image_tag @current_user.image.url, class: "current_user-image" %>
-
   <!-- 新規登録フォーム -->
   <div class="task-new-form">
     <%= render partial: "partials/error_message", locals: { thing: @task } %>
