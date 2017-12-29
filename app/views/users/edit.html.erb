@@ -1,5 +1,6 @@
 <div class="container">
   <h1>自分の情報を編集できます。</h1>
+  <%= image_tag @current_user.image.url, class: "current_user-image" %>
   <%= render partial: "partials/error_message", locals: { thing: @user } %>
   <%= form_for (@user) do |f| %>
   <div class="form-group">
