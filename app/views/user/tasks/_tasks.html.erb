@@ -1,63 +1,75 @@
 <table class="table">
   <% tasks.each do |task| %>
     <tr>
-    <td>
+    <td> 
+      <div class="tasks-index-task">
+        <span class="image-wrapper">
+          <%= image_tag task.user.image.url, class: "task-user-image" %>
+        </span> 
+        
+        <div class="task-layer-top">
+          <span class="task-label-color-box" style="background:<%= task.label %>;">
+          </span>
 
-      <div class="move-botton">
-        <% if task.yet? %>
-          <!-- 実行中へのボタン --> 
-          <%= form_for [:user, task] do |f| %>
-            <div class="form">
-              <%= f.hidden_field :status, value: "doing" %>
-              <div class="form-group">
-                <%= button_tag :type => "submit", :class => "btn btn-info" do %> 
-                  <i class="glyphicon glyphicon-play"></i>
-                <% end %> 
-              </div>
-            </div>
+          <% if task.due_date.present? %>
+            <span class="task-due_date">
+              <%= task.due_date %>
+            </span>
           <% end %>
-        <% elsif task.doing? %>
-          <!-- 完了済みのボタン --> 
-          <%= form_for [:user, task] do |f| %>
-            <div class="form upgrade-button">
-              <%= f.hidden_field :status, value: "done" %>
-              <div class="form-group">
-                <%= button_tag :type => "submit", :class => "btn btn-primary" do %> 
-                  <i class="glyphicon glyphicon-play"></i>
-                <% end %>  
-              </div>
-            </div>
-          <% end %>
-        <% elsif task.done? %>
-          <div></div>
-          <div class="form-group">
-            <%= button_to(user_task_path(task), method: :delete, class: "btn btn-danger") do %>
-              <i class="glyphicon glyphicon-remove"></i>
-            <% end %>
-          </div>  
-        <% end %> 
-      </div>  
+        </div> 
 
-      <div class="image-wrapper">
-        <%= image_tag task.user.image.url, class: "task-user-image" %>
-      </div> 
-
-      <span class="label-color-box" style="background:<%= task.label %>;">
-      </span>
-      <%= link_to(edit_user_task_path(task)) do %>
         <div class="task-title">
+        <%= link_to(edit_user_task_path(task)) do %>
           <%= task.title %>
+        <% end %>
         </div>
-      <% end %>
 
-      <div class="group-name">
-        <% if task.group_id == 0 %>
-        　個人タスク
-        <% else %>
-          <%= task.group.name %>  
-        <% end %>  
+        
+        <div class="task-layer-buttom">
+          <span class="task-group-name">
+            <% if task.group_id == 0 %>
+            　<span>個人タスク</span>
+            <% else %>
+              <span><%= task.group.name %></span>
+            <% end %>  
+          </span>
+
+          <span class="task-move-botton">
+            <% if task.yet? %>
+              <!-- 実行中へのボタン --> 
+              <%= form_for [:user, task] do |f| %>
+                <div class="form">
+                  <%= f.hidden_field :status, value: "doing" %>
+                  <div class="form-group">
+                    <%= button_tag :type => "submit", :class => "btn btn-info btn-xs" do %> 
+                      <i class="glyphicon glyphicon-play"></i>
+                    <% end %> 
+                  </div>
+                </div>
+              <% end %>
+            <% elsif task.doing? %>
+              <!-- 完了済みのボタン --> 
+              <%= form_for [:user, task] do |f| %>
+                <div class="form upgrade-button">
+                  <%= f.hidden_field :status, value: "done" %>
+                  <div class="form-group">
+                    <%= button_tag :type => "submit", :class => "btn btn-primary btn-xs" do %> 
+                      <i class="glyphicon glyphicon-play"></i>
+                    <% end %>  
+                  </div>
+                </div>
+              <% end %>
+            <% elsif task.done? %>
+              <div></div>
+              <div class="form-group">
+                <%= button_to(user_task_path(task), method: :delete, class: "btn btn-danger btn-xs") do %>
+                  <i class="glyphicon glyphicon-remove"></i>
+                <% end %>
+              </div>  
+            <% end %> 
+          </span>
+        </div>  
       </div>
-  
     </td>
     </tr>
   <% end %>
