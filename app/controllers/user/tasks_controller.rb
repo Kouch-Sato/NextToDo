@@ -10,8 +10,8 @@ class User::TasksController < ApplicationController
   def create
     tasks_for_index(params)
     @task = Task.new(task_params)
-    @task.yet!
     @task.user_id = @current_user.id
+    @task.yet!
     if @task.save
       redirect_to user_tasks_path, notice: "新しいタスクを作成しました" 
     else 
